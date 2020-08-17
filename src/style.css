@@ -13,6 +13,7 @@ body {
   background: radial-gradient(#fbfd8a, #a1ceed);
   margin: 30px 50px;
   padding: 20px 60px;
+  text-transform: capitalize;
 }
 
 h1 {
