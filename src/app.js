@@ -6,7 +6,7 @@ function createDate(timestamp) {
   }
   let minuites = date.getMinutes();
   if (minuites < 10) {
-    minuites = `0${miniutes}`;
+    minuites = `0${minuites}`;
   }
   let days = [
     "Sunday",
@@ -35,10 +35,15 @@ function displayMainTemparature(response) {
   humidityElement.innerHTML = response.data.main.humidity;
   let dateElement = document.querySelector("#currentDate");
   dateElement.innerHTML = createDate(response.data.dt * 1000);
+  let iconElement = document.querySelector("#icon");
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
 }
 
 let apiKey = "b9dcade6ea8b84ffbd9565650e525892";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Bordeaux&appid=${apiKey}&units=metric`;
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Dublin&appid=${apiKey}&units=metric`;
 
 axios.get(apiUrl).then(displayMainTemparature);
 
