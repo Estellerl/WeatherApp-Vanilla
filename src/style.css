@@ -1,3 +1,25 @@
+body {
+  background-image: linear-gradient(#99c9e9 0%, #cfe8fc 100%);
+}
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.heading {
+  border: 1px solid black;
+  border-radius: 80px;
+  background: radial-gradient(#fbfd8a, #a1ceed);
+  margin: 30px 50px;
+  padding: 20px 60px;
+}
+
 h1 {
-  color: blue;
+  font-size: 36px;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: 300;
 }
