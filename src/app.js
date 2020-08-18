@@ -42,10 +42,22 @@ function displayMainTemparature(response) {
   );
 }
 
-let apiKey = "b9dcade6ea8b84ffbd9565650e525892";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Dublin&appid=${apiKey}&units=metric`;
+function search(city) {
+  let apiKey = "b9dcade6ea8b84ffbd9565650e525892";
+  let apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayMainTemparature);
+}
 
-axios.get(apiUrl).then(displayMainTemparature);
+function enterSearch(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#cityInput");
+  search(cityInputElement.value);
+}
+
+let form = document.querySelector("#searchEngine");
+form.addEventListener("submit", enterSearch);
 
 //To do:
 //Need to capitalise only one letter for description of weather
+
+// Add weather description to weather icon
