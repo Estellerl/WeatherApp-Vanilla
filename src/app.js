@@ -23,18 +23,26 @@ function createDate(timestamp) {
 }
 
 function displayMainTemparature(response) {
+  celciusTemp = response.data.main.temp;
+
   let temparature = document.querySelector("#temp");
-  temparature.innerHTML = Math.round(response.data.main.temp);
+  temparature.innerHTML = Math.round(celciusTemp);
+
   let cityElement = document.querySelector("#city");
   cityElement.innerHTML = response.data.name;
+
   let descriptionElement = document.querySelector("#description");
   descriptionElement.innerHTML = response.data.weather[0].description;
+
   let windElement = document.querySelector("#wind");
   windElement.innerHTML = Math.round(response.data.wind.speed);
+
   let humidityElement = document.querySelector("#hum");
   humidityElement.innerHTML = response.data.main.humidity;
+
   let dateElement = document.querySelector("#currentDate");
   dateElement.innerHTML = createDate(response.data.dt * 1000);
+
   let iconElement = document.querySelector("#icon");
   iconElement.setAttribute(
     "src",
@@ -54,6 +62,25 @@ function enterSearch(event) {
   search(cityInputElement.value);
 }
 
+function showFaren(event) {
+  event.preventDefault();
+  let farenTemp = (celciusTemp * 9) / 5 + 32;
+  let temparature = document.querySelector("#temp");
+  temparature.innerHTML = Math.round(farenTemp);
+}
+
+function showCelcius(event) {
+  event.preventDefault();
+  let temparature = document.querySelector("#temp");
+  temp.innerHTML = Math.round(celciusTemp);
+}
+
+let conversiontoC = document.querySelector("#celcius");
+conversiontoC.addEventListener("click", showCelcius);
+
+let conversiontoF = document.querySelector("#faren");
+conversiontoF.addEventListener("click", showFaren);
+
 let form = document.querySelector("#searchEngine");
 form.addEventListener("submit", enterSearch);
 
@@ -61,3 +88,7 @@ form.addEventListener("submit", enterSearch);
 //Need to capitalise only one letter for description of weather
 
 // Add weather description to weather icon
+
+//Add background city
+
+//can you reload the page and bring it up to the top
