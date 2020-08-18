@@ -25,10 +25,10 @@ h2 {
   font-weight: 300;
 }
 
-.celcius {
+.active {
   color: black;
   cursor: default;
 }
-.celcius:hover {
+.active:hover {
   text-decoration: none;
 }

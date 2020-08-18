@@ -46,13 +46,13 @@ function displayMainTemparature(response) {
   let iconElement = document.querySelector("#icon");
   iconElement.setAttribute(
     "src",
-    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
 }
 
 function search(city) {
   let apiKey = "b9dcade6ea8b84ffbd9565650e525892";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  let apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayMainTemparature);
 }
 
@@ -65,15 +65,21 @@ function enterSearch(event) {
 function showFaren(event) {
   event.preventDefault();
   let farenTemp = (celciusTemp * 9) / 5 + 32;
+  conversiontoC.classList.remove("active");
+  conversiontoF.classList.add("active");
   let temparature = document.querySelector("#temp");
   temparature.innerHTML = Math.round(farenTemp);
 }
 
 function showCelcius(event) {
   event.preventDefault();
+  conversiontoF.classList.remove("active");
+  conversiontoC.classList.add("active");
   let temparature = document.querySelector("#temp");
   temp.innerHTML = Math.round(celciusTemp);
 }
+
+let celciusTemp = null;
 
 let conversiontoC = document.querySelector("#celcius");
 conversiontoC.addEventListener("click", showCelcius);
