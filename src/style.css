@@ -24,3 +24,11 @@ h2 {
   font-size: 20px;
   font-weight: 300;
 }
+
+.celcius {
+  color: black;
+  cursor: default;
+}
+.celcius:hover {
+  text-decoration: none;
+}
