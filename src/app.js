@@ -134,20 +134,15 @@ conversiontoF.addEventListener("click", showFaren);
 let form = document.querySelector("#searchEngine");
 form.addEventListener("submit", enterSearch);
 
-function currentLocation(event) {
-  event.preventDefault();
-  navigator.geolocation.getCurrentPosition(currentLocation);
-}
-
-function currentLocation(position) {
+function searchLocation(position) {
   let apiKey = "b9dcade6ea8b84ffbd9565650e525892";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayMainTemparature);
 }
 
-function getCurrentPosition() {
-  let apiKey = "b9dcade6ea8b84ffbd9565650e525892";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+function currentLocation(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(searchLocation);
 }
 
 let currentLoc = document.querySelector("#currentLocation");
