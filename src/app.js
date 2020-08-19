@@ -66,6 +66,7 @@ function formatHours(timestamp) {
 
 function displayFutureForcast(response) {
   let forcastElement = document.querySelector("#forcast");
+  forcastElement.innerHTML = null;
   let forcast = null;
 
   for (let index = 0; index < 6; index++) {
@@ -118,7 +119,7 @@ function showCelcius(event) {
   event.preventDefault();
   conversiontoF.classList.remove("active");
   conversiontoC.classList.add("active");
-  let temparature = document.querySelector("#temp");
+  let temp = document.querySelector("#temp");
   temp.innerHTML = Math.round(celciusTemp);
 }
 
@@ -133,6 +134,26 @@ conversiontoF.addEventListener("click", showFaren);
 let form = document.querySelector("#searchEngine");
 form.addEventListener("submit", enterSearch);
 
+function currentLocation(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(currentLocation);
+}
+
+function currentLocation(position) {
+  let apiKey = "b9dcade6ea8b84ffbd9565650e525892";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayMainTemparature);
+}
+
+function getCurrentPosition() {
+  let apiKey = "b9dcade6ea8b84ffbd9565650e525892";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+}
+
+let currentLoc = document.querySelector("#currentLocation");
+form.addEventListener("click", currentLocation);
+
+search("Bordeaux");
 //To do:
 //Need to capitalise only one letter for description of weather
 
