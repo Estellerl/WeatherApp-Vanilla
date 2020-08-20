@@ -69,7 +69,7 @@ function displayFutureForcast(response) {
   forcastElement.innerHTML = null;
   let forcast = null;
 
-  for (let index = 0; index < 6; index++) {
+  for (let index = 0; index < 5; index++) {
     forcast = response.data.list[index];
     forcastElement.innerHTML += `
   
@@ -134,27 +134,36 @@ conversiontoF.addEventListener("click", showFaren);
 let form = document.querySelector("#searchEngine");
 form.addEventListener("submit", enterSearch);
 
-function searchLocation(position) {
-  let apiKey = "b9dcade6ea8b84ffbd9565650e525892";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
+function searchCurrentLocation(position) {
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+  let apiKey = "21d207d4e5449385a0586090096515c7";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayMainTemparature);
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayFutureForcast);
 }
 
 function currentLocation(event) {
   event.preventDefault();
-  navigator.geolocation.getCurrentPosition(searchLocation);
+  navigator.geolocation.getCurrentPosition(searchCurrentLocation);
 }
 
 let currentLoc = document.querySelector("#currentLocation");
-form.addEventListener("click", currentLocation);
+currentLoc.addEventListener("click", currentLocation);
+
+//function sunriseSunset(response) {
+//let apiKey = "b9dcade6ea8b84ffbd9565650e525892";
+//let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=${apiKey}`;
+
+//axios.get(apiUrl).then(showSun);}
 
 search("Bordeaux");
+
 //To do:
 //Need to capitalise only one letter for description of weather
 
 // Add weather description to weather icon
-
-//Add background city
 
 //can you reload the page and bring it up to the top
 
