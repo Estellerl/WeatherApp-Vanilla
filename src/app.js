@@ -25,6 +25,10 @@ function createDate(timestamp) {
 function displayMainTemparature(response) {
   celciusTemp = response.data.main.temp;
 
+  sunriseTime = response.data.sys.sunrise;
+
+  sunsetTime = response.data.sys.sunset;
+
   let temparature = document.querySelector("#temp");
   temparature.innerHTML = Math.round(celciusTemp);
 
@@ -48,6 +52,12 @@ function displayMainTemparature(response) {
     "src",
     `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
+
+  //let sunriseElement = document.querySelector("#sunrise");
+  //sunriseElement.innerHTML = formatHours(response.data.sys.sunrise * 1000);
+
+  //let sunsetElement = document.querySelector("#sunset");
+  //sunsetElement.innerHTML = formatHours(response.data.sys.sunset * 1000);
 }
 
 function formatHours(timestamp) {
@@ -152,13 +162,33 @@ function currentLocation(event) {
 let currentLoc = document.querySelector("#currentLocation");
 currentLoc.addEventListener("click", currentLocation);
 
-//function sunriseSunset(response) {
-//let apiKey = "b9dcade6ea8b84ffbd9565650e525892";
-//let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=${apiKey}`;
-
-//axios.get(apiUrl).then(showSun);}
-
 search("Bordeaux");
+
+function showSunrise(event) {
+  event.preventDefault();
+  let sunrise = sunriseTime * 1000;
+
+  let sunriseElement = document.querySelector("#sunrise");
+  sunriseElement.innerHTML = formatHours(sunrise);
+}
+
+sunrise = null;
+
+let sunriseButton = document.querySelector("#sunrise");
+sunriseButton.addEventListener("click", showSunrise);
+
+function showSunset(event) {
+  event.preventDefault();
+  let sunset = sunsetTime * 1000;
+
+  let sunsetElement = document.querySelector("#sunset");
+  sunsetElement.innerHTML = formatHours(sunset);
+}
+
+sunset = null;
+
+let sunsetButton = document.querySelector("#sunset");
+sunsetButton.addEventListener("click", showSunset);
 
 //To do:
 //Need to capitalise only one letter for description of weather
