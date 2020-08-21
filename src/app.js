@@ -108,6 +108,12 @@ function search(city) {
 
   apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayFutureForcast);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showSunrise);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(sunriseSunsetReset);
 }
 
 function enterSearch(event) {
@@ -189,6 +195,14 @@ sunset = null;
 
 let sunsetButton = document.querySelector("#sunset");
 sunsetButton.addEventListener("click", showSunset);
+
+function sunriseSunsetReset(response) {
+  let sunriseReset = document.querySelector("#sunrise");
+  sunriseReset.innerHTML = "emoji";
+
+  let sunsetReset = document.querySelector("#sunset");
+  sunsetReset.innerHTML = "emoji";
+}
 
 //To do:
 //Need to capitalise only one letter for description of weather
