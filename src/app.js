@@ -84,17 +84,17 @@ function displayFutureForcast(response) {
     forcastElement.innerHTML += `
   
 <div class="row weather-forecast" id="forcast">
-        <div class="col-2">
-          <h3>
+        <div class="col-1" id="cast">
+          <div id ="time">
            ${formatHours(forcast.dt * 1000)} 
-          </h3>
-          <img
+          </div>
+         <div id ="img"> <img
         src="http://openweathermap.org/img/wn/${forcast.weather[0].icon}@2x.png"
-      />
-          <div class="weather-forecast-temperature">
-            <strong>${Math.round(forcast.main.temp_max)}</strong> ${Math.round(
+      /> </div>
+          <div class="weather-forecast-temperature" id="degreesTemp">
+            <strong>${Math.round(forcast.main.temp_max)}</strong>° ${Math.round(
       forcast.main.temp_min
-    )}degreess
+    )}°
           </div>
         </div>
       </div>`;
@@ -109,11 +109,8 @@ function search(city) {
   apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayFutureForcast);
 
-  apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(showSunrise);
-
-  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(sunriseSunsetReset);
+  //apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  //axios.get(apiUrl).then(showSunrise);
 }
 
 function enterSearch(event) {
@@ -169,40 +166,6 @@ let currentLoc = document.querySelector("#currentLocation");
 currentLoc.addEventListener("click", currentLocation);
 
 search("Bordeaux");
-
-function showSunrise(event) {
-  event.preventDefault();
-  let sunrise = sunriseTime * 1000;
-
-  let sunriseElement = document.querySelector("#sunrise");
-  sunriseElement.innerHTML = formatHours(sunrise);
-}
-
-sunrise = null;
-
-let sunriseButton = document.querySelector("#sunrise");
-sunriseButton.addEventListener("click", showSunrise);
-
-function showSunset(event) {
-  event.preventDefault();
-  let sunset = sunsetTime * 1000;
-
-  let sunsetElement = document.querySelector("#sunset");
-  sunsetElement.innerHTML = formatHours(sunset);
-}
-
-sunset = null;
-
-let sunsetButton = document.querySelector("#sunset");
-sunsetButton.addEventListener("click", showSunset);
-
-function sunriseSunsetReset(response) {
-  let sunriseReset = document.querySelector("#sunrise");
-  sunriseReset.innerHTML = "emoji";
-
-  let sunsetReset = document.querySelector("#sunset");
-  sunsetReset.innerHTML = "emoji";
-}
 
 //To do:
 //Need to capitalise only one letter for description of weather

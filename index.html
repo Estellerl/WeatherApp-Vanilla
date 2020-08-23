@@ -11,31 +11,37 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="src/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Yantramanav:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
   <body>
     <div class="container">
       <div class="heading">
         <h1>
-          <span id="city">City</span>
-          <strong id="temp">26</strong>°
+          <span id="city" class="city">City</span>
+          <strong id="temp" class="temp">Temp</strong>°
           <a href="a" id="celcius" class="active">C|</a>
           <a href="a" id="faren">F</a>
         </h1>
         <h2>
-          <span id="currentDate">
-            Last Updated: Thursday 15:15
-          </span>
-          <br />
-          <span id="description"> Light Rain </span>
+          <span id="description"> description </span>
           <img src="http://openweathermap.org/img/wn/01d@2x.png" id="icon" />
         </h2>
+        <h3>
+          <span class="lastUpdated"> Last updated: </span>
+          <span id="currentDate">
+            Date
+          </span>
+        </h3>
         <hr />
         <div class="row">
           <div class="col">
             Wind
             <br />
-            <span id="wind">12</span> km/hr
+            <span id="wind">wind</span> km/hr
           </div>
           <div class="col">
             Humidity
@@ -44,20 +50,21 @@
           </div>
         </div>
       </div>
+      <div class="please">
+        <div class="weathernexthours">
+          <div class="hourForecast">12 Hour Forecast:</div>
 
-      <div class="weatherfivedays">
-        <h3>Next few hours</h3>
-      </div>
-      <div class="row weather-forecast" id="forcast">
-        <div class="col-2">
-          <h3></h3>
-          <span class="img"> </span>
-          <div class="weather-forecast-temperature">
-            <strong> </strong>
+          <div class="row weather-forecast" id="forcast">
+            <div class="col-1">
+              <div id="time"></div>
+              <span class="img" id="img"> </span>
+              <div class="weather-forecast-temperature" id="degreesTemp">
+                <strong> </strong>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
       <form id="searchEngine">
         <input
           type="search"
@@ -65,18 +72,11 @@
           id="cityInput"
           autocomplete="off"
         />
+
         <input type="submit" value="Search" />
-        <input type="button" value="Current Location" id="currentLocation" />
+        <input type="button" value="Current Location " id="currentLocation"/>
       </form>
 
-      <div class="row">
-        <div class="col" id="sunrise">
-          ☀️
-        </div>
-        <div class="col" >
-         <button id="sunset" > 🌅 </button> 
-      </div>
-    </div>
     <script src="src/app.js"></script>
   </body>
 </html>
