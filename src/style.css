@@ -62,11 +62,7 @@ ul {
 }
 
 #nightTime {
-  background-image: radial-gradient(
-    farthest-corner at 10px 10px,
-    #f79060 0%,
-    #7995a8 55%
-  );
+  background-color: #7995a8;
 }
 
 #time {
@@ -94,4 +90,27 @@ ul {
 }
 
 #searchEngine {
+  margin-bottom: 10px;
+}
+
+.sunrise {
+  text-align: left;
+}
+
+.sunset {
+  text-align: right;
+}
+
+footer {
+  font-family: monospace;
+  font-size: 10px;
+  color: #78909c;
+}
+
+.name {
+  color: #78909c;
+}
+
+.gitHub {
+  color: #78909c;
 }

@@ -53,11 +53,11 @@ function displayMainTemparature(response) {
     `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
 
-  //let sunriseElement = document.querySelector("#sunrise");
-  //sunriseElement.innerHTML = formatHours(response.data.sys.sunrise * 1000);
+  let sunriseElement = document.querySelector("#sunrise");
+  sunriseElement.innerHTML = formatHours(response.data.sys.sunrise * 1000);
 
-  //let sunsetElement = document.querySelector("#sunset");
-  //sunsetElement.innerHTML = formatHours(response.data.sys.sunset * 1000);
+  let sunsetElement = document.querySelector("#sunset");
+  sunsetElement.innerHTML = formatHours(response.data.sys.sunset * 1000);
 }
 
 function formatHours(timestamp) {
@@ -170,8 +170,7 @@ search("Bordeaux");
 //To do:
 //Need to capitalise only one letter for description of weather
 
-// Add weather description to weather icon
-
+//add description?
 //can you reload the page and bring it up to the top
 
 //remove what you have searched for
