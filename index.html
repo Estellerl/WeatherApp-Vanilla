@@ -17,7 +17,7 @@
     />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
-  <body>
+  <body id="body" class="body">
     <div class="container">
       <div class="heading">
         <h1>
@@ -50,21 +50,21 @@
           </div>
         </div>
       </div>
-      <div class="please">
-        <div class="weathernexthours">
-          <div class="hourForecast">12 Hour Forecast:</div>
 
-          <div class="row weather-forecast" id="forcast">
-            <div class="col-1">
-              <div id="time"></div>
-              <span class="img" id="img"> </span>
-              <div class="weather-forecast-temperature" id="degreesTemp">
-                <strong> </strong>
-              </div>
+      <div class="weathernexthours">
+        <div class="hourForecast">12 Hour Forecast:</div>
+
+        <div class="row weather-forecast" id="forcast" style="float: right;">
+          <div class="col-1">
+            <div id="time"></div>
+            <span class="img" id="img"> </span>
+            <div class="weather-forecast-temperature" id="degreesTemp">
+              <strong> </strong>
             </div>
           </div>
         </div>
       </div>
+
       <form id="searchEngine">
         <input
           type="search"
@@ -107,7 +107,7 @@
           href="https://github.com/Estellerl/WeatherApp-Vanilla"
           target="blank"
         >
-          Open Source Code
+          Open-sourced <code></code>
         </a>
       </footer>
     </div>

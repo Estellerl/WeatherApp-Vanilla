@@ -8,6 +8,7 @@ function createDate(timestamp) {
   if (minuites < 10) {
     minuites = `0${minuites}`;
   }
+
   let days = [
     "Sunday",
     "Monday",
@@ -24,10 +25,6 @@ function createDate(timestamp) {
 
 function displayMainTemparature(response) {
   celciusTemp = response.data.main.temp;
-
-  sunriseTime = response.data.sys.sunrise;
-
-  sunsetTime = response.data.sys.sunset;
 
   let temparature = document.querySelector("#temp");
   temparature.innerHTML = Math.round(celciusTemp);
@@ -50,15 +47,23 @@ function displayMainTemparature(response) {
   let iconElement = document.querySelector("#icon");
   iconElement.setAttribute(
     "src",
-    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+    (alt = "weathericon")
   );
 
+  let sunriseTime = response.data.sys.sunrise * 1000;
+
+  let sunsetTime = response.data.sys.sunset * 1000;
+
   let sunriseElement = document.querySelector("#sunrise");
-  sunriseElement.innerHTML = formatHours(response.data.sys.sunrise * 1000);
+  sunriseElement.innerHTML = formatHours(sunriseTime);
 
   let sunsetElement = document.querySelector("#sunset");
-  sunsetElement.innerHTML = formatHours(response.data.sys.sunset * 1000);
+  sunsetElement.innerHTML = formatHours(sunsetTime);
 }
+
+let sunriseTime = null;
+let sunsetTime = null;
 
 function formatHours(timestamp) {
   let date = new Date(timestamp);
@@ -83,7 +88,7 @@ function displayFutureForcast(response) {
     forcast = response.data.list[index];
     forcastElement.innerHTML += `
   
-<div class="row weather-forecast" id="forcast">
+<div class="row weather-forecast" id="forcast" style="float: right;">
         <div class="col-1" id="cast">
           <div id ="time">
            ${formatHours(forcast.dt * 1000)} 
@@ -108,9 +113,6 @@ function search(city) {
 
   apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayFutureForcast);
-
-  //apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  //axios.get(apiUrl).then(showSunrise);
 }
 
 function enterSearch(event) {
@@ -166,11 +168,3 @@ let currentLoc = document.querySelector("#currentLocation");
 currentLoc.addEventListener("click", currentLocation);
 
 search("Bordeaux");
-
-//To do:
-//Need to capitalise only one letter for description of weather
-
-//add description?
-//can you reload the page and bring it up to the top
-
-//remove what you have searched for
